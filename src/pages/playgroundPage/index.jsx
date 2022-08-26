@@ -11,7 +11,7 @@ const Playground = () => {
 
  useEffect(() => {
   dispatch(fetchPlaygrounds());
- }, [dispatch])
+ }, [])
   return (
     <div>
       {id}
