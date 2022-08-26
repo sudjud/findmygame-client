@@ -1,0 +1,41 @@
+.header
+  display: flex
+  justify-content: space-between
+  padding: 15px 30px
+  font-size: 1.1rem
+  align-items: center
+  background-color: #1D1D1D
+
+.logo
+  color: white
+
+.navs
+  display: flex
+  gap: 25px
+  a
+    background: linear-gradient(-135deg, #11c300  50%, #fff 0) var(--_d, 100%)/250% no-repeat, linear-gradient(-135deg, #1D1D1D 50%, #11c300 0) var(--_d, 100%)/250% no-repeat
+    -webkit-background-clip: text, padding-box
+      background-clip: text, padding-box
+    transition: 0.8s
+    text-decoration: none
+    color: white
+    padding: 3px 7px
+    &:hover
+      --_d: 50%
+
+.account
+  button
+    background-color: transparent
+    border: 1px solid white
+    color: white
+    border-radius: 5px
+    padding: 10px 15px
+    font-size: 1rem
+    &:hover
+      background: linear-gradient(-135deg, #11c300  50%, #fff 0) var(--_d, 100%)/250% no-repeat, linear-gradient(-135deg, #1D1D1D 50%, #11c300 0) var(--_d, 100%)/250% no-repeat
+      -webkit-background-clip: text, padding-box
+      background-clip: text, padding-box
+      transition: 0.8s
+    &:active
+      transform: scale(0.95)
+      transition: 0.1s
