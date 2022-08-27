@@ -1,12 +1,17 @@
 import MainPage from './pages/MainPage';
 import './style.sass';
 import Filtration from './components/filtration/index';
+import { Route, Routes } from 'react-router-dom';
+import Playground from './pages/playgroundPage/index';
 
 function App() {
   return (
     <>
     <div className="app">
-      <MainPage />
+      <Routes>
+        <Route path='/' element={<MainPage />}></Route>
+        <Route path='/car' element={<Playground />}></Route>
+      </Routes>
     </div>
     </>
   );
