@@ -6,6 +6,7 @@ import Register from "./components/Authorization/Register";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import SignIn from "./components/Authorization/Login";
+import Filtration from './components/filtration/index';
 
 function App() {
   const [activeModalRegister, setActiveRegister] = useState(false);
