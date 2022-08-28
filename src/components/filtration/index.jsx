@@ -12,21 +12,16 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Button from "@mui/material/Button";
 
 const Filtration = () => {
-  const [value, setValue] = React.useState(null);
+  const [data, setData] = React.useState(null);
   const [sport, setSport] = React.useState("");
   const [time, setTime] = React.useState("");
   const [duration, setDuration] = React.useState("");
   const filtration = {
     sport: sport,
-    date: value,
+    date: data,
     time: time,
     duration: duration
   }
-
-
-  // console.log("sport: " + sport);
-  // console.log("time: " + time);
-  // console.log("date: ", +value);
 
   const handleChange = (event) => {
     setSport(event.target.value);
@@ -68,9 +63,9 @@ const Filtration = () => {
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             label="Выбор даты"
-            value={value}
+            value={data}
             onChange={(newValue) => {
-              setValue(newValue);
+              setData(newValue);
             }}
             renderInput={(params) => <TextField {...params} />}
           />

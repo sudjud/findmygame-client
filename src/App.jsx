@@ -7,6 +7,8 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import SignIn from "./components/Authorization/Login";
 import Filtration from './components/filtration/index';
+import { Route, Routes } from 'react-router-dom';
+import Playground from './pages/playgroundPage/index';
 
 function App() {
   const [activeModalRegister, setActiveRegister] = useState(false);
@@ -29,6 +31,8 @@ function App() {
               />
             }
           />
+          <Route path='/' element={<MainPage />}></Route>
+          <Route path='/car' element={<Playground />}></Route>
           {/* <Route
             path="/login"
             element={<SignIn setActiveSignIn={setActiveSignIn} setActiveRegister={setActiveRegister}/>}
