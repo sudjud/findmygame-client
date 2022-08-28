@@ -3,11 +3,11 @@ import Header from '../../components/Header';
 import Welcome from '../../components/Welcome';
 import main from './main.module.sass'
 
-function MainPage() {
+function MainPage({activeModalRegister, setActiveRegister}) {
 
   return (
     <div className={main.main}>
-      <Header />
+      <Header activeModalRegister={activeModalRegister} setActiveRegister={setActiveRegister}/>
       <Welcome />
       <HowItWorks />
     </div>
