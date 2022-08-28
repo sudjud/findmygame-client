@@ -1,7 +1,13 @@
 import header from "./header.module.sass";
 import { NavLink } from "react-router-dom";
 
-function Header() {
+function Header({ setActiveRegister }) {
+  const token = localStorage.getItem("token");
+  const handleClick = () => {
+    if (!token) {
+      setActiveRegister(true);
+    }
+  };
   return (
     <div className={header.header}>
       <div className={header.logo}>FindMyGame</div>
@@ -12,7 +18,7 @@ function Header() {
         <NavLink to="">Вопросы и ответы</NavLink>
       </div>
       <div className={header.account}>
-        <button>Личный кабинет</button>
+        <button onClick={() => handleClick()}>Личный кабинет</button>
       </div>
     </div>
   );

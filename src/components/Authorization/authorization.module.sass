@@ -1,0 +1,84 @@
+.modal
+    height: 100vh
+    width: 100vw
+    background-color: rgba(0, 0, 0, 0.4)
+    position: relative
+    position: fixed
+    top: 0
+    left: 0
+    color: black
+    display: flex
+    align-items: center
+    justify-content: center
+    // position: relative  
+    // filter: blur(5px)
+
+.modal::before
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 1
+    filter: blur(5px)
+
+.modal__content
+    -webkit-box-shadow: 0 3px 20px 0 rgb(0 0 0 / 10%)
+    padding: 20px
+    border-radius: 20px
+    background-color: white
+    height: 400px
+    width: 25vw
+    text-align: center
+    .inputs
+
+    .loginInput
+        margin: 10px 0
+        // margin-top: 20px    
+        font-size: 15px
+        color: #1b3815
+        line-height: 1.2
+        height: 37px
+        width: 70%
+        background: #ebebeb
+        border-radius: 27px
+        border: none
+        padding: 0 30px
+
+    .passwordInput
+        margin: 10px 0
+        border: none
+        font-size: 15px
+        width: 70%
+        color: #1b3815
+        line-height: 1.2
+        height: 37px
+        background: #ebebeb
+        border-radius: 27px
+        padding: 0 30px
+
+    .buttonRegister
+        margin: 10px 0
+        font-size: 15px
+        width: 86%
+        color: #fff 
+        line-height: 1.2
+        height: 38px
+        background: rgb(0,0,0)
+        border-radius: 27px
+        padding: 0 30px
+        cursor: pointer
+    .errorDiv
+        margin-bottom: 15px
+        // position: absolute
+        // left: 20
+        // top: 30
+    .signInAccount
+        display: flex
+        justify-content: center
+        margin-top: 10px
+    .buttonSignIn
+        margin-left: 10px
+        cursor: pointer
+        color: blue
+        background-color: transparent
+        font-size: 16px
+        border: none
