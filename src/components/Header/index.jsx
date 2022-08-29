@@ -1,8 +1,12 @@
 import header from "./header.module.sass";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import SignIn from "../Authorization/Login";
+import Register from "../Authorization/Register";
 
-function Header({ setActiveRegister }) {
-  const navigate = useNavigate();
+function Header() {
+  const [activeModalRegister, setActiveRegister] = useState(false);
+  const [activeModalSignIn, setActiveSignIn] = useState(false);
   const token = localStorage.getItem("token");
   const handleClick = () => {
     if (!token) {
@@ -21,6 +25,20 @@ function Header({ setActiveRegister }) {
       <div className={header.account}>
         <button onClick={() => handleClick()}>Личный кабинет</button>
       </div>
+      {activeModalRegister && (
+          <Register
+            activeModalRegister={activeModalRegister}
+            setActiveRegister={setActiveRegister}
+            setActiveSignIn={setActiveSignIn}
+          />
+        )}
+        {activeModalSignIn && (
+          <SignIn
+            activeModalSignIn={activeModalSignIn}
+            setActiveSignIn={setActiveSignIn}
+            setActiveRegister={setActiveRegister}
+          />
+        )}
     </div>
   );
 }
