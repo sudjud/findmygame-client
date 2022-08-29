@@ -1,7 +1,8 @@
 import header from "./header.module.sass";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Header({ setActiveRegister }) {
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const handleClick = () => {
     if (!token) {
@@ -10,7 +11,7 @@ function Header({ setActiveRegister }) {
   };
   return (
     <div className={header.header}>
-      <div className={header.logo}>FindMyGame</div>
+      <div onClick={() => navigate('/')} className={header.logo}>FindMyGame</div>
       <div className={header.navs}>
         <NavLink to="">Площадки</NavLink>
         <NavLink to="">Команды</NavLink>
