@@ -1,16 +1,22 @@
 import MainPage from "./pages/MainPage";
 import "./style.sass";
-import { Route, Routes } from "react-router-dom";
-import Playground from "./pages/playgroundPage/index";
+// import Filtration from "./components/filtration/index";
+import Register from "./components/Authorization/Register";
+// import Login from "./components/Authorization/Login";
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import SignIn from "./components/Authorization/Login";
+import Playground from './pages/playgroundPage/index';
+import PostPlg from "./components/CRM/PostPlayground";
 
 function App() {
   return (
     <>
       <div className="app">
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/" element={<MainPage />}></Route>
-          <Route path="/car" element={<Playground />}></Route>
+          <Route path='/' element={<MainPage />}></Route>
+          <Route path='/playground/:id' element={<Playground />}></Route>
+          <Route path='/addplg' element={<PostPlg /> } />
         </Routes>
       </div>
     </>

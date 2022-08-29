@@ -15,7 +15,7 @@ function Header() {
   };
   return (
     <div className={header.header}>
-      <div className={header.logo}>FindMyGame</div>
+      <div onClick={() => navigate('/')} className={header.logo}>FindMyGame</div>
       <div className={header.navs}>
         <NavLink to="">Площадки</NavLink>
         <NavLink to="">Команды</NavLink>
