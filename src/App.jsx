@@ -8,6 +8,7 @@ import { useState } from "react";
 import SignIn from "./components/Authorization/Login";
 import Playground from './pages/playgroundPage/index';
 import PostPlg from "./components/CRM/PostPlayground";
+import MCardSlider from "./components/Cards/MCardSlider";
 
 function App() {
   return (
@@ -17,8 +18,10 @@ function App() {
           <Route path='/' element={<MainPage />}></Route>
           <Route path='/playground/:id' element={<Playground />}></Route>
           <Route path='/addplg' element={<PostPlg /> } />
+          <Route path='/playgrounds' element={<MCardSlider />}></Route>
         </Routes>
       </div>
+      
     </>
   );
 }
