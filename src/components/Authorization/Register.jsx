@@ -8,10 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import authorization from "./authorization.module.sass";
 
-const Auth = ({
-  setActiveRegister,
-  setActiveSignIn,
-}) => {
+const Auth = ({ setActiveRegister, setActiveSignIn }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -41,6 +38,7 @@ const Auth = ({
   const handleRegisterUser = () => {
     if (!token) {
       dispatch(registerUser({ email, password, name })).then((data) => {
+        alert();
         if (!data.error) {
           navigate("/", { replace: true });
           setActiveRegister(false);
