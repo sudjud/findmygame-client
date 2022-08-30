@@ -3,7 +3,6 @@ import "./style.sass";
 // import Filtration from "./components/filtration/index";
 import Register from "./components/Authorization/Register";
 // import Login from "./components/Authorization/Login";
-import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import SignIn from "./components/Authorization/Login";
 import Filtration from './components/filtration/index';
