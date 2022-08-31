@@ -7,6 +7,7 @@ import { useState } from "react";
 import SignIn from "./components/Authorization/Login";
 import Playground from './pages/playgroundPage/index';
 import PostPlg from "./components/CRM/PostPlayground";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (

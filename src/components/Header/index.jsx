@@ -1,5 +1,5 @@
 import header from "./header.module.sass";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { useState } from "react";
 import SignIn from "../Authorization/Login";
 import Register from "../Authorization/Register";
@@ -15,7 +15,7 @@ function Header() {
   };
   return (
     <div className={header.header}>
-      <div onClick={() => navigate('/')} className={header.logo}>FindMyGame</div>
+      <div onClick={() => Navigate('/')} className={header.logo}>FindMyGame</div>
       <div className={header.navs}>
         <NavLink to="">Площадки</NavLink>
         <NavLink to="">Команды</NavLink>
