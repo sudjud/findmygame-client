@@ -64,8 +64,18 @@
         height: 38px
         background: rgb(0,0,0)
         border-radius: 27px
+        border: node
         padding: 0 30px
         cursor: pointer
+        &:hover
+            background: linear-gradient(-135deg, #11c300  50%, #fff 0) var(--_d, 100%)/250% no-repeat, linear-gradient(-135deg, #1D1D1D 50%, #11c300 0) var(--_d, 100%)/250% no-repeat
+            -webkit-background-clip: text, padding-box
+            background-clip: text, padding-box
+            transition: 0.8s
+            &:active
+            transform: scale(0.95)
+            transition: 0.5s
+
     .errorDiv
         margin-bottom: 15px
         // position: absolute
