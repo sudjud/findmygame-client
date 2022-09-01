@@ -32,7 +32,6 @@ const Playground = () => {
   const [date, setData] = React.useState(null);
   const [time, setTime] = React.useState("");
   const [duration, setDuration] = React.useState("");
-  const msInDay = 86400000;
   const filtration = {
     date,
     time,
@@ -52,8 +51,6 @@ const Playground = () => {
     setDuration(event.target.value);
   };
 
-  
-
   const handleFiltration = () => {
     const bookings = playground.booking
     // if (bookings.length) {
@@ -62,63 +59,31 @@ const Playground = () => {
     //   }
     // }
     const from = new Date(filtration.date);
-    from.setHours(filtration.time, 0, 0, 0);
+    from.setHours(filtration.time, 0, 0, 0)
     const to = new Date(filtration.date);
     to.setHours(filtration.time + filtration.duration, 0, 0, 0);
-    dispatch(rentPlayground({
-      from: new Date(from).getTime(),
-      to: new Date(to).getTime(),
-      id: id
-    }))
+    dispatch(rentPlayground({ id, from, to }))
     setData(null);
     setTime('');
     setDuration('');
   };
   
   if (playground) {
+    const busyDates = playground.booking.map(item => {
+      let from = item.from.split('T')[1].split(':')[0]
+      let to = item.to.split('T')[1].split(':')[0]
+    })
     const scheduleNumFrom = +playground.schedule.split(" - ")[0].split(":")[0];
     const scheduleNumTo = +playground.schedule.split(" - ")[1].split(":")[0];
-    const bookings = playground.booking;
-    const pickedDate = new Date(date).getTime();
-
-    const todaysBookings = bookings.filter(item => {
-      return (new Date(item.from) - new Date(pickedDate)) < 86400000;
-    })
-
-    const todaysBookingHours = todaysBookings.map((item) => {
-      return {
-        ...item,
-        from: (new Date(item.from)).getHours(),
-        to: (new Date(item.to)).getHours(),
-      }
-    })
-
-
     let scheduleOptions = [];
     for (let i = scheduleNumFrom; i <= scheduleNumTo; i++) {
-      const isInBooking = todaysBookingHours.find((item) => {
-        return i >= item.from && i < item.to;
-      })
-
-      if(isInBooking) {
-        scheduleOptions.push(
-          <MenuItem disabled value={i}>
-            <div className="time-num">
-              <span>-</span>
-            </div>
-          </MenuItem>
-        );
-      }
-      else {
-        scheduleOptions.push(
-          <MenuItem value={i}>
-            <div className="time-num">
-              <span>{ i <= 9 ? `0${i}:00` : `${i}:00` }</span>
-            </div>
-          </MenuItem>
-        );
-      }
-     
+      scheduleOptions.push(
+        <MenuItem value={i}>
+          <div className="time-num">
+            <span>{ i.length === 1 ? `0${i}:00` : `${i}:00` }</span>
+          </div>
+        </MenuItem>
+      );
     }
     const {
       name,
