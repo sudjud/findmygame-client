@@ -6,6 +6,7 @@ import SignIn from "../Authorization/Login";
 import Register from "../Authorization/Register";
 
 function Header() {
+  const navigate = useNavigate();
   const [activeModalRegister, setActiveRegister] = useState(false);
   const [activeModalSignIn, setActiveSignIn] = useState(false);
   const token = localStorage.getItem("token");
