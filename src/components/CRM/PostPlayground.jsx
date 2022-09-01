@@ -107,15 +107,6 @@ function PostPlg() {
     });
   }
 
-  if (
-    inputFields.scheduleFrom === "00:00" &&
-    inputFields.scheduleTo === "23:59"
-  ) {
-    setInputFields({
-      ...inputFields,
-      convenience: true,
-    });
-  }
 
   const handleSurfaceSelect = (data) => {
     setInputFields({
