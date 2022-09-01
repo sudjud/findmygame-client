@@ -107,7 +107,6 @@ function PostPlg() {
     });
   }
 
-
   const handleSurfaceSelect = (data) => {
     setInputFields({
       ...inputFields,
@@ -175,13 +174,16 @@ function PostPlg() {
     return (
       <div className={crm.postPlg}>
         <form className={crm.postPlg__form}>
+          <h1>Добавление новой площадки</h1>
           <input
+            className={crm.name}
             type="text"
             onChange={(e) => inputHandler(e, "name")}
             placeholder="Название"
             value={inputFields.name}
           />
           <input
+            className={crm.name}
             type="text"
             onChange={(e) => inputHandler(e, "address")}
             placeholder="Адрес"
@@ -189,6 +191,7 @@ function PostPlg() {
           />
           <div className={crm.coordinates}>
             <InputMask
+              className={crm.geodata}
               mask="99.999999"
               type="text"
               placeholder="Широта"
@@ -197,6 +200,7 @@ function PostPlg() {
               onChange={(e) => inputHandler(e, "latitude")}
             />
             <InputMask
+              className={crm.geodata}
               mask="99.999999"
               type="text"
               placeholder="Долгота"
@@ -205,7 +209,7 @@ function PostPlg() {
               onChange={(e) => inputHandler(e, "longitude")}
             />
           </div>
-  
+
           <div className={crm.checkbox}>
             <label htmlFor="convenience">Круглосуточно</label>
             <input
@@ -216,14 +220,14 @@ function PostPlg() {
             />
           </div>
           <div className={crm.schedule}>
-            График работы:
-            <input
+            График работы: 
+            <input className={crm.schedule}
               type="time"
               value={inputFields.scheduleFrom}
               disabled={inputFields.convenience}
               onChange={(e) => inputHandler(e, "scheduleFrom")}
             />{" "}
-            <span>-</span>
+             <span>- </span>
             <input
               type="time"
               value={inputFields.scheduleTo}
@@ -231,14 +235,14 @@ function PostPlg() {
               onChange={(e) => inputHandler(e, "scheduleTo")}
             />
           </div>
-  
-          <Select
+
+          <Select className={crm.grass}
             options={surfaceOptions}
             onChange={handleSurfaceSelect}
             placeholder="Покрытие"
           />
-  
-          <div className="checkbox">
+
+          <div className={crm.checkbox}>
             <label htmlFor="covered">Крытый</label>
             <input
               type="checkbox"
@@ -247,8 +251,8 @@ function PostPlg() {
               onChange={(e) => inputHandler(e, "covered", true)}
             />
           </div>
-  
-          <div className="checkbox">
+
+          <div className={crm.checkbox}>
             <label htmlFor="shower">Душ</label>
             <input
               type="checkbox"
@@ -257,8 +261,8 @@ function PostPlg() {
               onChange={(e) => inputHandler(e, "shower", true)}
             />
           </div>
-  
-          <div className="checkbox">
+
+          <div className={crm.checkbox}>
             <label htmlFor="dressroom">Раздевалка</label>
             <input
               type="checkbox"
@@ -267,8 +271,8 @@ function PostPlg() {
               onChange={(e) => inputHandler(e, "dressroom", true)}
             />
           </div>
-  
-          <div className="checkbox">
+
+          <div className={crm.checkbox}>
             <label htmlFor="lighting">Освещение</label>
             <input
               type="checkbox"
@@ -277,8 +281,8 @@ function PostPlg() {
               onChange={(e) => inputHandler(e, "lighting", true)}
             />
           </div>
-  
-          <div className="checkbox">
+
+          <div className={crm.checkbox}>
             <label htmlFor="parking">Парковка</label>
             <input
               type="checkbox"
@@ -287,8 +291,8 @@ function PostPlg() {
               onChange={(e) => inputHandler(e, "parking", true)}
             />
           </div>
-  
-          <div className="checkbox">
+
+          <div className={crm.checkbox}>
             <label htmlFor="inventory">Инвентарь</label>
             <input
               type="checkbox"
@@ -297,7 +301,7 @@ function PostPlg() {
               onChange={(e) => inputHandler(e, "inventory", true)}
             />
           </div>
-  
+
           <label htmlFor="price">Цена за час</label>
           <input
             type="number"
@@ -305,15 +309,15 @@ function PostPlg() {
             value={inputFields.price}
             onChange={(e) => inputHandler(e, "price")}
           />
-  
+
           <label htmlFor="sport">Доступные виды спорта</label>
-          <Select
+          <Select className={crm.area}
             id="sport"
             options={sportOptions}
             placeholder="Спорт"
             onChange={handleSportSelect}
           />
-  
+
           <label htmlFor="photo">Фотографии площадки</label>
           <input
             type="file"
