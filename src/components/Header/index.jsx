@@ -9,6 +9,7 @@ function Header() {
   const [activeModalRegister, setActiveRegister] = useState(false);
   const [activeModalSignIn, setActiveSignIn] = useState(false);
   const token = localStorage.getItem("token");
+  const navigate = useNavigate('')
   const handleClick = () => {
     if (!token) {
       setActiveRegister(true);
@@ -18,7 +19,7 @@ function Header() {
     <div className={header.header}>
       <div onClick={() => navigate('/')} className={header.logo}>FindMyGame</div>
       <div className={header.navs}>
-        <NavLink to="">Площадки</NavLink>
+        <NavLink to="/playgrounds">Площадки</NavLink>
         <NavLink to="">Команды</NavLink>
         <NavLink to="">О нас</NavLink>
         <NavLink to="">Вопросы и ответы</NavLink>

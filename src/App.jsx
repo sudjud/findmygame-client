@@ -4,8 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Playground from "./pages/playgroundPage/index";
 import PostPlg from "./components/CRM/PostPlayground";
 import Header from "./components/Header";
-import DateAndTimePicker from "./components/DateTimePicker";
-import TestPage from "./pages/playgroundPage/testPage";
+import MCardSlider from "./components/Cards/MCardSlider";
 
 function App() {
   return (
@@ -13,11 +12,13 @@ function App() {
       <Header />
       <div className="app">
         <Routes>
-          <Route path="/" element={<MainPage />}></Route>
-          <Route path="/playground/:id" element={<Playground />}></Route>
-          <Route path="/addplg" element={<PostPlg />} />
+          <Route path='/' element={<MainPage />}></Route>
+          <Route path='/playground/:id' element={<Playground />}></Route>
+          <Route path='/addplg' element={<PostPlg /> } />
+          <Route path='/playground' element={<MCardSlider />}></Route>
         </Routes>
       </div>
+      
     </>
   );
 }
