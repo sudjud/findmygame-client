@@ -42,7 +42,7 @@ const playgroundSlice = createSlice({
       })
       .addCase(fetchPlaygrounds.fulfilled, (state, action) => {
         state.playgrounds = action.payload
-        state.loading = true
+        state.loading = false
         state.error = null
       })
       .addCase(fetchPlaygrounds.rejected, (state, action) => {
@@ -56,7 +56,7 @@ const playgroundSlice = createSlice({
       })
       .addCase(postPlayground.fulfilled, (state, action) => {
         state.playgrounds.push(action.payload)
-        state.loading = true
+        state.loading = false
         state.error = null
       })
       .addCase(postPlayground.rejected, (state, action) => {

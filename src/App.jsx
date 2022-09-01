@@ -9,11 +9,13 @@ import SignIn from "./components/Authorization/Login";
 import Playground from './pages/playgroundPage/index';
 import PostPlg from "./components/CRM/PostPlayground";
 import MCardSlider from "./components/Cards/MCardSlider";
+import Header from './components/Header/index';
 
 function App() {
   return (
     <>
       <div className="app">
+      <Header />
         <Routes>
           <Route path='/' element={<MainPage />}></Route>
           <Route path='/playground/:id' element={<Playground />}></Route>
