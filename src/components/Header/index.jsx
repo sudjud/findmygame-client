@@ -1,10 +1,12 @@
 import header from "./header.module.sass";
+import { Navigate, NavLink } from "react-router-dom";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SignIn from "../Authorization/Login";
 import Register from "../Authorization/Register";
 
 function Header() {
+  const navigate = useNavigate();
   const [activeModalRegister, setActiveRegister] = useState(false);
   const [activeModalSignIn, setActiveSignIn] = useState(false);
   const token = localStorage.getItem("token");
