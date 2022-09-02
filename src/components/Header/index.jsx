@@ -24,7 +24,7 @@ function Header() {
         <NavLink to="/playground">Площадки</NavLink>
         <NavLink to="/teams">Команды</NavLink>
         <NavLink to="">О нас</NavLink>
-        <NavLink to="">Вопросы и ответы</NavLink>
+        <NavLink to="/questions">Вопросы и ответы</NavLink>
       </div>
       <div className={header.account}>
         <button onClick={() => handleClick()}>Личный кабинет</button>

@@ -9,12 +9,14 @@ import PersonalArea from "./components/personalArea/PersonalArea";
 import CreateTeam from "./components/Teams/CreateTeam";
 import { ToastContainer } from "react-toastify";
 import TeamsPage from "./pages/TeamsPage";
+import Questions from "./components/Questions/Questions";
 
 function App() {
   return (
     <>
       <Header />
       <div className="app">
+      <Header />
         <Routes>
           <Route path='/' element={<MainPage />}></Route>
           <Route path='/playground/:id' element={<Playground />}></Route>
@@ -22,6 +24,7 @@ function App() {
           <Route path='/playground' element={<MCardSlider />}></Route>
           <Route path='/profile' element={<PersonalArea />} />
           <Route path='/teams' element={<TeamsPage />} />
+          <Route path="/questions" element={<Questions />} />
         </Routes>
       </div>
       <ToastContainer />
