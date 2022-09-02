@@ -4,11 +4,12 @@ import "./style.sass";
 import Register from "./components/Authorization/Register";
 // import Login from "./components/Authorization/Login";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import SignIn from "./components/Authorization/Login";
+// import { useState } from "react";
+// import SignIn from "./components/Authorization/Login";
 import Playground from './pages/playgroundPage/index';
 import PostPlg from "./components/CRM/PostPlayground";
 import MCardSlider from "./components/Cards/MCardSlider";
+import Chat from './components/Chat/Chat';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/playground/:id' element={<Playground />}></Route>
           <Route path='/addplg' element={<PostPlg /> } />
           <Route path='/playgrounds' element={<MCardSlider />}></Route>
+          <Route path='/chat' element={<Chat />}></Route>
         </Routes>
       </div>
       
