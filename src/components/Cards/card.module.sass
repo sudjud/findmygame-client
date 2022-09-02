@@ -2,24 +2,90 @@
   display: flex
   height: calc(100vh - 70px)
 .elements
-  width: 50%
+  width: 53%
   height: 100vh
+  background-color: #F9F9F9
 .map
-  width: 50%
-
+  width: 47%
 .searching
   height: 100%
   width: 100%
 .search
   width: 100%
   height: 60px
-  border: 1px solid red
 .cards_sorting
   display: flex
+  justify-content: space-between
 .sorting
-  width: 30%
-  border: 1px solid green
+  width: 25%
   height: 100vh
+  margin-left: 23px
+  box-shadow: 0px 2px 29px 2px rgba(0, 0, 0, 0.1)
+  border-radius: 10px
+  margin-top: 15px
+  &:hover 
+    transform: scale(1.03)
+    transition: 350ms
 .cards
-  width: 70%
-  border: 1px solid green
+  overflow-y: scroll
+  height: 100vh
+.cards::-webkit-scrollbar 
+  display: none
+.page
+  display: flex
+  width: 95%
+  height: 180px
+  border-radius: 10px
+  overflow: hidden
+  margin-top: 15px
+  box-shadow: 0px 2px 29px 2px rgba(0, 0, 0, 0.2)
+  cursor: pointer
+  transition: 300ms
+  &:hover 
+    transform: scale(1.03)
+.images
+  width: 45%
+img
+  width: 100%
+  height: 100%
+.name
+  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif
+  font-size: 20px
+.information
+  display: flex
+  flex-direction: column
+  width: 55%
+  padding: 20px 0px 0px 25px
+.address
+  padding-top: 30px
+.price
+  margin: 50px 0px 0px 180px
+.search
+  display: flex
+  justify-content: space-around
+  align-items: center
+.input_search
+  width: 480px
+  height: 40px
+  border-radius: 6px
+  border-color: #cec5c5
+.button_search
+  width: 180px
+  height: 42px
+  border-radius: 6px
+  background: #F34336
+  border: none
+  color: white
+  font-size: 20px
+.time_checkbox
+  display: flex
+  flex-direction: column
+.time_price
+  margin-left: 15px
+p
+  margin-left: 7px
+.search_container
+  display: flex
+  align-items: center
+  .search_icon
+    margin-left: -40px
