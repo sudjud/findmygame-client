@@ -68,7 +68,6 @@ const Playground = () => {
     } = playground;
     return (
       <>
-        <Header />
         <div className={play.main}>
           <div className={play.head}>
             <div className={play.title}>

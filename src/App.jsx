@@ -21,6 +21,7 @@ function App() {
           <Route path='/playground/:id' element={<Playground />}></Route>
           <Route path='/addplg' element={<PostPlg /> } />
           <Route path='/playgrounds' element={<MCardSlider />}></Route>
+          
         </Routes>
       </div>
       
