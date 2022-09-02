@@ -23,7 +23,7 @@ function Header() {
       <div className={header.navs}>
         <NavLink to="/playground">Площадки</NavLink>
         <NavLink to="/teams">Команды</NavLink>
-        <NavLink to="">О нас</NavLink>
+        <NavLink to="/about">О нас</NavLink>
         <NavLink to="/questions">Вопросы и ответы</NavLink>
       </div>
       <div className={header.account}>

@@ -6,6 +6,7 @@ import PostPlg from "./components/CRM/PostPlayground";
 import Header from "./components/Header";
 import MCardSlider from "./components/Cards/MCardSlider";
 import Chat from './components/Chat/Chat';
+import AboutUs from "./components/AboutUs";
 import PersonalArea from "./components/personalArea/PersonalArea";
 import CreateTeam from "./components/Teams/CreateTeam";
 import { ToastContainer } from "react-toastify";
@@ -27,6 +28,7 @@ function App() {
           <Route path='/profile' element={<PersonalArea />} />
           <Route path='/teams' element={<TeamsPage />} />
           <Route path="/questions" element={<Questions />} />
+          <Route path="/about" element={<AboutUs />}></Route>
         </Routes>
       </div>
       <ToastContainer />
