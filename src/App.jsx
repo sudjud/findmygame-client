@@ -13,6 +13,7 @@ function App() {
     <>
       <Header />
       <div className="app">
+      <Header />
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/playground/:id" element={<Playground />}></Route>
