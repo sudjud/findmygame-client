@@ -10,6 +10,7 @@ import { GiSoccerField } from "react-icons/gi";
 import { BsClock } from "react-icons/bs";
 import "react-toastify/dist/ReactToastify.css";
 import BookingForm from "../../components/Booking/Form";
+import Reviews from "./Reviews";
 
 const Playground = () => {
   const { id } = useParams();
@@ -94,7 +95,6 @@ const Playground = () => {
               </div>
             </div>
           </div>
-
           <BookingForm id={id} />
         </div>
       </>
