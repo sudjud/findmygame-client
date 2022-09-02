@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import style from "./profile.module.sass";
-const Playground = ({ name, address, sportName, price }) => {
+const Playground = ({ name, address, sportName, price, id }) => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className={style.cardPlayground}>
@@ -8,7 +11,7 @@ const Playground = ({ name, address, sportName, price }) => {
         <div>Адресс: {address}</div>
         <div>Вид: {sportName}</div>
         <div>Цена: {price}</div>
-        <button className={style.account}>Подробнее</button>
+        <button onClick={() => navigate(`/playground/${id}`)} className={style.account}>Подробнее</button>
         <button className={style.account}>Отменить</button>
       </div>
     </div>

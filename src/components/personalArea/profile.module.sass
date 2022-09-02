@@ -1,86 +1,105 @@
 .container
-    background-color: rgb(0,0,0)
-    color: #fff
-    height: 100vw
-    display: flex
-    justify-content: space-between
-    padding: 0 20px
-    font-family: Courier, monospace
+  background: url('./pole.jpg') no-repeat
+  background-size: cover
+  color: #fff
+  height: 100vw
+  display: flex
+  justify-content: space-between
+  padding: 0 20px
+  font-family: Courier, monospace
 
 .account
-    background-color: transparent
-    border: 1px solid white
-    color: white
-    border-radius: 5px
-    padding: 10px 15px
-    font-size: 1rem
-    &:hover
-      background: linear-gradient(-135deg, #11c300  50%, #fff 0) var(--_d, 100%)/250% no-repeat, linear-gradient(-135deg, #1D1D1D 50%, #11c300 0) var(--_d, 100%)/250% no-repeat
-      -webkit-background-clip: text, padding-box
-      background-clip: text, padding-box
-      transition: 0.8s
+  background-color: transparent
+  border: 1px solid white
+  color: white
+  border-radius: 5px
+  padding: 10px 15px
+  font-size: 1rem
+  &:hover
+    background: linear-gradient(-135deg, #11c300 50%, #fff 0) var(--_d, 100%)/250% no-repeat, linear-gradient(-135deg, #1D1D1D 50%, #11c300 0) var(--_d, 100%)/250% no-repeat
+    -webkit-background-clip: text, padding-box
+    background-clip: text, padding-box
+    transition: 0.8s
     &:active
       transform: scale(0.95)
       transition: 0.1s
 
+.profile
+  display: flex
+  flex-direction: row-reverse
+  justify-content: space-between
+  &__left
+    h3
+      font-size: 3rem
+      margin-bottom: 20px
+    div
+      font-size: 1.5rem
+    button
+      margin-top: 10px
+  &__right
+    background-color: rgba(#1D1D1D, 0.7)
+    padding: 30px
+    border-radius: 0 20px
 
 .modal
-    height: 100vh
-    width: 100vw
-    background-color: rgba(0, 0, 0, 0.4)
-    position: relative
-    position: fixed
-    top: 0
-    left: 0
-    color: black
-    display: flex
-    align-items: center
-    justify-content: center
+  height: 100vh
+  width: 100vw
+  background-color: rgba(0, 0, 0, 0.4)
+  position: relative
+  position: fixed
+  top: 0
+  left: 0
+  color: black
+  display: flex
+  align-items: center
+  justify-content: center
 
 .modal::before
-    position: absolute
-    top: 0
-    left: 0
-    z-index: 1
-    filter: blur(5px)
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 1
+  filter: blur(5px)
 
 .modal__content
-    -webkit-box-shadow: 0 3px 20px 0 rgb(0 0 0 / 10%)
-    padding: 20px
-    border-radius: 20px
-    background-color: white
-    height: 175px
-    width: 25vw
-    text-align: center
+  -webkit-box-shadow: 0 3px 20px 0 rgb(0 0 0 / 10%)
+  padding: 20px
+  border-radius: 20px
+  background-color: white
+  height: 175px
+  width: 25vw
+  text-align: center
 
-    .button
-        margin: 10px 10px
-        font-size: 15px
-        width: 35%
-        color: #fff 
-        line-height: 1.2
-        height: 38px
-        background: rgb(0,0,0)
-        border-radius: 27px
-        padding: 0 30px
-        cursor: pointer
-        &:hover
-            background: linear-gradient(-135deg, #11c300  50%, #fff 0) var(--_d, 100%)/250% no-repeat, linear-gradient(-135deg, #1D1D1D 50%, #11c300 0) var(--_d, 100%)/250% no-repeat
-            -webkit-background-clip: text, padding-box
-            background-clip: text, padding-box
-            transition: 0.8s
-            &:active
-            transform: scale(0.95)
-            transition: 0.8s
+  .button
+    margin: 10px 10px
+    font-size: 15px
+    width: 35%
+    color: #fff
+    line-height: 1.2
+    height: 38px
+    background: rgb(0,0,0)
+    border-radius: 27px
+    padding: 0 30px
+    cursor: pointer
+    &:hover
+      background: linear-gradient(-135deg, #11c300 50%, #fff 0) var(--_d, 100%)/250% no-repeat, linear-gradient(-135deg, #1D1D1D 50%, #11c300 0) var(--_d, 100%)/250% no-repeat
+      -webkit-background-clip: text, padding-box
+      background-clip: text, padding-box
+      transition: 0.8s
+      &:active
+        transform: scale(0.95)
+        transition: 0.8s
 
 .cardPlayground
-    margin: 20px
-    width: 500px
-    border: solid 1px #fff
-    height: 200px
-    border-radius: 30px
-    padding: 20px
-    background: url('../../../src/pages/playgroundPage/a.jpg') no-repeat
-    background-size: cover
-    height: calc(30vh - 70px)
-    font-size: 19px
+  margin: 20px
+  width: 500px
+  height: 200px
+  border-radius: 0 20px
+  padding: 20px
+  background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('../../../src/pages/playgroundPage/a.jpg') no-repeat
+  background-size: cover
+  height: calc(30vh - 70px)
+  font-size: 19px
+  button
+    margin-right: 10px
+    margin-top: 15px
