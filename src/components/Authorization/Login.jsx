@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { fetchUsers, signIn } from "../../features/authSlice";
+import React, { useState } from "react";
+import { signIn } from "../../features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import authorization from "./authorization.module.sass";
@@ -9,16 +9,15 @@ const SignIn = ({ setActiveRegister, setActiveSignIn }) => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const error = useSelector((state) => state.auth.error);
-  console.log(error);
   // const users = useSelector((state) => state.auth.users);
   // const loading = useSelector((state) => state.auth.loading);
   // const isActivated = useSelector((state) => state.auth.isActivated);
   // const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchUsers());
+  // }, [dispatch]);
 
   const handleLogin = (e) => {
     setEmail(e.target.value);
@@ -33,7 +32,6 @@ const SignIn = ({ setActiveRegister, setActiveSignIn }) => {
       if (!data.error) {
         navigate("/", { replace: true });
         setActiveSignIn(false);
-        console.log(2);
       }
     });
   };
