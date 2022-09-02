@@ -38,44 +38,52 @@ const PersonalArea = () => {
   if (!loading && playgrouds.length) {
     return (
       <div className={style.container}>
-        <div>
-          <h1>Мои брони</h1>
-          {playgrouds.map((item) => {
-            for (let i of item.booking) {
-              if (i.user._id === myData._id) {
-                return (
-                  <Playground
-                    key={item._id}
-                    name={item.name}
-                    addres={item.address}
-                    sportName={item.sport.name}
-                    price={item.price}
-                  />
-                );
-              }
-            }
-            return null;
-          })}
-        </div>
+        <div className="bscontainer">
+          <div className={style.profile}>
+            <div className={style.profile__right}>
+              <h1>Мои брони</h1>
+              {playgrouds.map((item) => {
+                for (let i of item.booking) {
+                  if (i.user._id === myData._id) {
+                    return (
+                      <Playground
+                        key={item._id}
+                        id={item._id}
+                        name={item.name}
+                        addres={item.address}
+                        sportName={item.sport.name}
+                        price={item.price}
+                      />
+                    );
+                  }
+                }
+                return null;
+              })}
+            </div>
 
-        <div>
-          <h3>Личный кабинет</h3>
-          <button className={style.account} onClick={() => handleClickLogOut()}>
-            Выйти из аккаунта
-          </button>
-          <div>Ваш логин: {myData.name}</div>
-          <div>Ваш email: {myData.email}</div>
+            <div className={style.profile__left}>
+              <h3>Личный кабинет</h3>
+              <div>Ваш логин: {myData.name}</div>
+              <div>Ваш email: {myData.email}</div>
+              <button
+                className={style.account}
+                onClick={() => handleClickLogOut()}
+              >
+                Выйти из аккаунта
+              </button>
+            </div>
+            {activeModalLogOut && (
+              <Logout
+                activeModalLogOut={activeModalLogOut}
+                setActiveModalLogOut={setActiveModalLogOut}
+              />
+            )}
+          </div>
         </div>
-        {activeModalLogOut && (
-          <Logout
-            activeModalLogOut={activeModalLogOut}
-            setActiveModalLogOut={setActiveModalLogOut}
-          />
-        )}
       </div>
     );
   }
-  <div>Загрузка</div>
+  <div>Загрузка</div>;
 };
 
 export default PersonalArea;

@@ -1,5 +1,5 @@
 import header from "./header.module.sass";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SignIn from "../Authorization/Login";
 import Register from "../Authorization/Register";
@@ -22,7 +22,7 @@ function Header() {
       </div>
       <div className={header.navs}>
         <NavLink to="/playground">Площадки</NavLink>
-        <NavLink to="">Команды</NavLink>
+        <NavLink to="/teams">Команды</NavLink>
         <NavLink to="">О нас</NavLink>
         <NavLink to="/questions">Вопросы и ответы</NavLink>
       </div>
