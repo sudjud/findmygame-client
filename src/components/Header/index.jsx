@@ -1,5 +1,4 @@
 import header from "./header.module.sass";
-import { Navigate, NavLink } from "react-router-dom";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SignIn from "../Authorization/Login";
@@ -10,7 +9,6 @@ function Header() {
   const [activeModalRegister, setActiveRegister] = useState(false);
   const [activeModalSignIn, setActiveSignIn] = useState(false);
   const token = localStorage.getItem("token");
-  const navigate = useNavigate('')
   const handleClick = () => {
     if (!token) {
       return setActiveRegister(true);

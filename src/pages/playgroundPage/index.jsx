@@ -2,10 +2,12 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchPlaygrounds, rentPlayground } from "../../features/playgroundSlice";
+import {
+  fetchPlaygrounds,
+  rentPlayground,
+} from "../../features/playgroundSlice";
 import play from "./play.module.sass";
 import { RiMapPin2Line } from "react-icons/ri";
-import { MdOutlinePeopleAlt } from "react-icons/md";
 import { GiHighGrass } from "react-icons/gi";
 import { GiSoccerField } from "react-icons/gi";
 import { BsClock } from "react-icons/bs";
@@ -19,16 +21,17 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Reviews from "./Reviews";
 
 const Playground = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const plays = useSelector((state) => state.playground.playgrounds);
   const playground = plays.find((item) => item._id === id);
-  const loading = useSelector(state => state.playground.loading);
-  const error = useSelector(state => state.playground.error);
+  const loading = useSelector((state) => state.playground.loading);
+  const error = useSelector((state) => state.playground.error);
   const [date, setData] = React.useState(null);
   const [time, setTime] = React.useState("");
   const [duration, setDuration] = React.useState("");
@@ -52,10 +55,8 @@ const Playground = () => {
     setDuration(event.target.value);
   };
 
-  
-
   const handleFiltration = () => {
-    const bookings = playground.booking
+    const bookings = playground.booking;
     // if (bookings.length) {
     //   for (let i of bookings) {
     //     console.log(new Date(i.from));
@@ -65,42 +66,43 @@ const Playground = () => {
     from.setHours(filtration.time, 0, 0, 0);
     const to = new Date(filtration.date);
     to.setHours(filtration.time + filtration.duration, 0, 0, 0);
-    dispatch(rentPlayground({
-      from: new Date(from).getTime(),
-      to: new Date(to).getTime(),
-      id: id
-    }))
+    dispatch(
+      rentPlayground({
+        from: new Date(from).getTime(),
+        to: new Date(to).getTime(),
+        id: id,
+      })
+    );
     setData(null);
-    setTime('');
-    setDuration('');
+    setTime("");
+    setDuration("");
   };
-  
+
   if (playground) {
     const scheduleNumFrom = +playground.schedule.split(" - ")[0].split(":")[0];
     const scheduleNumTo = +playground.schedule.split(" - ")[1].split(":")[0];
     const bookings = playground.booking;
     const pickedDate = new Date(date).getTime();
 
-    const todaysBookings = bookings.filter(item => {
-      return (new Date(item.from) - new Date(pickedDate)) < 86400000;
-    })
+    const todaysBookings = bookings.filter((item) => {
+      return new Date(item.from) - new Date(pickedDate) < 86400000;
+    });
 
     const todaysBookingHours = todaysBookings.map((item) => {
       return {
         ...item,
-        from: (new Date(item.from)).getHours(),
-        to: (new Date(item.to)).getHours(),
-      }
-    })
-
+        from: new Date(item.from).getHours(),
+        to: new Date(item.to).getHours(),
+      };
+    });
 
     let scheduleOptions = [];
     for (let i = scheduleNumFrom; i <= scheduleNumTo; i++) {
       const isInBooking = todaysBookingHours.find((item) => {
         return i >= item.from && i < item.to;
-      })
+      });
 
-      if(isInBooking) {
+      if (isInBooking) {
         scheduleOptions.push(
           <MenuItem disabled value={i}>
             <div className="time-num">
@@ -108,17 +110,15 @@ const Playground = () => {
             </div>
           </MenuItem>
         );
-      }
-      else {
+      } else {
         scheduleOptions.push(
           <MenuItem value={i}>
             <div className="time-num">
-              <span>{ i <= 9 ? `0${i}:00` : `${i}:00` }</span>
+              <span>{i <= 9 ? `0${i}:00` : `${i}:00`}</span>
             </div>
           </MenuItem>
         );
       }
-     
     }
     const {
       name,
@@ -257,12 +257,13 @@ const Playground = () => {
               variant="contained"
               href="#contained-buttons"
               onClick={handleFiltration}
-              disabled={ !date || !time || !duration }
+              disabled={!date || !time || !duration}
             >
               Забронировать
             </Button>
             <ToastContainer />
           </div>
+          <Reviews />
         </div>
       </>
     );
