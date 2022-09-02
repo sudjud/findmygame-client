@@ -6,8 +6,11 @@ export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("http://localhost:3030/users");
-      //   console.log(response.data);
+      const response = await axios.get("http://localhost:3030/users", {
+        headers: {
+          Authorization: `Bearer ${thunkAPI.getState().auth.token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -19,18 +22,14 @@ export const registerUser = createAsyncThunk(
   "user/registerUser",
   async ({ email, password, name }, thunkAPI) => {
     try {
-      // console.log(email, password);
       const response = await axios.post("http://localhost:3030/register", {
         email,
         password,
         name,
       });
-      // console.log(response.data);
       if (response.data.error) {
         return thunkAPI.rejectWithValue(response.data.error);
       }
-
-      // localStorage.setItem("isActivated", response.data.user.isActivated);
       return response.data;
     } catch (error) {
       console.log(1, error);
@@ -47,8 +46,6 @@ export const signIn = createAsyncThunk(
         email,
         password,
       });
-      console.log(res.data);
-      //   const { user, accesToken } = res.data;
       localStorage.setItem("token", res.data.tokens.accesToken);
       return res.data;
     } catch (error) {
@@ -74,11 +71,10 @@ export const signIn = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    users: [],
+    user: [],
     error: null,
     loading: false,
     token: localStorage.getItem("token"),
-    // isActivated: localStorage.getItem("isActivated"),
   },
   reducers: {
     deleteToken: (state, action) => {
@@ -99,9 +95,6 @@ const userSlice = createSlice({
         state.loading = false;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.users.push(action.payload.user);
-        // state.isActivated = action.payload.user.isActivated;
-        // console.log(state.isActivated);
         state.loading = false;
         state.error = null;
       })
@@ -117,11 +110,12 @@ const userSlice = createSlice({
       .addCase(signIn.fulfilled, (state, action) => {
         // console.log(action.payload);
         state.token = action.payload.tokens.accesToken;
+        state.myData = action.payload.user;
         state.loading = false;
         state.error = null;
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.users = action.payload;
+        state.user = action.payload;
         state.loading = false;
       })
       .addCase(fetchUsers.rejected, (state, action) => {
