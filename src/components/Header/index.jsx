@@ -1,6 +1,5 @@
 import header from "./header.module.sass";
-import { Navigate } from "react-router-dom";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SignIn from "../Authorization/Login";
 import Register from "../Authorization/Register";
@@ -23,9 +22,9 @@ function Header() {
       </div>
       <div className={header.navs}>
         <NavLink to="/playground">Площадки</NavLink>
-        <NavLink to="">Команды</NavLink>
-        <NavLink to="about">О нас</NavLink>
-        <NavLink to="">Вопросы и ответы</NavLink>
+        <NavLink to="/teams">Команды</NavLink>
+        <NavLink to="/about">О нас</NavLink>
+        <NavLink to="/questions">Вопросы и ответы</NavLink>
       </div>
       <div className={header.account}>
         <button onClick={() => handleClick()}>Личный кабинет</button>
