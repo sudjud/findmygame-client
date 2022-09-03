@@ -5,19 +5,33 @@ import { React, useState, useEffect } from "react";
 import style from "./profile.module.sass";
 import Playground from "./Playground";
 import Logout from "./LogoutModal";
+import { fetchTeams } from "../../features/teamSlice";
+import MyGame from "./MyGame";
 
 const PersonalArea = () => {
   // Забираем из state все места
   const playgrouds = useSelector((state) => state.playground.playgrounds);
   const loading = useSelector((state) => state.auth.loading);
-
   // Тут долны храниться данные авторзованного пользователя
   const myData = useSelector((state) => state.auth.user);
+  const myGames = useSelector((state) =>
+    state.team.teams.filter((item) => {
+      for (let i of item.members) {
+        if (i._id === myData._id) {
+          return true;
+        }
+      }
+    })
+  );
 
   // Состояние для открытия и закрытия модального окна подтверждения выхода из аккаунта
   const [activeModalLogOut, setActiveModalLogOut] = useState(false);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTeams());
+  }, [dispatch]);
 
   // Fetch запрос для мест, чтобы отобразить их в профиле как забронированные
   useEffect(() => {
@@ -41,24 +55,46 @@ const PersonalArea = () => {
         <div className="bscontainer">
           <div className={style.profile}>
             <div className={style.profile__right}>
-              <h1>Мои брони</h1>
-              {playgrouds.map((item) => {
-                for (let i of item.booking) {
-                  if (i.user._id === myData._id) {
-                    return (
-                      <Playground
-                        key={item._id}
-                        id={item._id}
-                        name={item.name}
-                        addres={item.address}
-                        sportName={item.sport.name}
-                        price={item.price}
-                      />
-                    );
+              <div>
+                <h1>Мои брони</h1>
+                {playgrouds.map((item) => {
+                  for (let i of item.booking) {
+                    if (i.user._id === myData._id) {
+                      return (
+                        <Playground
+                          key={item._id}
+                          id={item._id}
+                          name={item.name}
+                          address={item.address}
+                          sportName={item.sport.name}
+                          price={item.price}
+                        />
+                      );
+                    }
                   }
-                }
-                return null;
-              })}
+                  return null;
+                })}
+              </div>
+              <div className={style.myTeams}>
+                <h1>{`Мои команды:${myGames.length}`}</h1>
+                <div className={style.myTeamsScroll}>
+                  {myGames.map((item) => {
+                    for (let i of item.members) {
+                      // console.log(item);
+                      for (let a in i) {
+                        return (
+                          <MyGame
+                            key={item._id}
+                            namePlayer={i.name}
+                            emailPlayer={i.email}
+                            id={item._id}
+                          />
+                        );
+                      }
+                    }
+                  })}
+                </div>
+              </div>
             </div>
 
             <div className={style.profile__left}>
