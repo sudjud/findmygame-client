@@ -85,8 +85,8 @@ const PersonalArea = () => {
                         return (
                           <MyGame
                             key={item._id}
-                            namePlayer={i.name}
-                            emailPlayer={i.email}
+                            namePlayer={item.admin.name}
+                            emailPlayer={item.admin.email}
                             id={item._id}
                           />
                         );

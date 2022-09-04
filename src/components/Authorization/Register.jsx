@@ -34,7 +34,9 @@ const Auth = ({ setActiveRegister, setActiveSignIn }) => {
   const handleRegisterUser = () => {
     if (!token) {
       dispatch(registerUser({ email, password, name })).then((data) => {
-        alert();
+        alert(
+          "Вам на почту будет отправлено письмо для активации вашего аккаунта!"
+        );
         if (!data.error) {
           navigate("/", { replace: true });
           setActiveRegister(false);
