@@ -31,6 +31,7 @@ const Reviews = () => {
   }
   //Находим среднюю оценку
   const rating = rating_1 / playground.reviews.length;
+  
 
   const handleReview = (e) => {
     setReview(e.target.value);
@@ -40,7 +41,7 @@ const Reviews = () => {
     dispatch(addReview({ review, star, id }));
     setReview("");
   };
-  if (!loading && playground.reviews) {
+  if (playground.reviews) {
     return (
       <div className={play.container}>
         <div>

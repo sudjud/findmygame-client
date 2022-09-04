@@ -16,7 +16,6 @@ import Questions from "./components/Questions/Questions";
 function App() {
   return (
     <>
-      <Header />
       <div className="app">
       <Header />
         <Routes>

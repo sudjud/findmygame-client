@@ -58,6 +58,35 @@ export const rentPlayground = createAsyncThunk(
   }
 );
 
+export const deleteRent = createAsyncThunk(
+  "plg/deleteRent",
+  async (id, thunkAPI) => {
+    try {
+      const res = await fetch(
+        `http://localhost:3030/cancel-rent/playground/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application-json",
+            Authorization: `Bearer ${thunkAPI.getState().auth.token}`,
+          },
+          body: JSON.stringify(),
+        }
+      );
+      const data = await res.json();
+      console.log(data);
+      if (data.message) {
+        toast.error(data.error);
+        return thunkAPI.rejectWithValue(data.error);
+      }
+      toast.success("Бронь успешно отменена");
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const addReview = createAsyncThunk(
   "review/addReview",
   async ({ star, review, id }, thunkAPI) => {
@@ -155,6 +184,14 @@ const playgroundSlice = createSlice({
         });
         state.loading = false;
         state.error = null;
+      })
+      .addCase(deleteRent.fulfilled, (state, action) => {
+        state.playgrounds = state.playgrounds.map((item) => {
+          if (item._id === action.payload._id) {
+            return action.payload;
+          }
+          return item;
+        });
       });
   },
 });
