@@ -1,5 +1,5 @@
 import header from "./header.module.sass";
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SignIn from "../Authorization/Login";
 import Register from "../Authorization/Register";
@@ -27,6 +27,7 @@ function Header() {
         <NavLink to="/questions">Вопросы и ответы</NavLink>
       </div>
       <div className={header.account}>
+        <a target='_blank' href='http://t.me/findmygamebot'>Телеграм бот</a>
         <button onClick={() => handleClick()}>Личный кабинет</button>
       </div>
       {activeModalRegister && (
