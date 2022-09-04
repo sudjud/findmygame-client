@@ -14,7 +14,7 @@ function Team(params) {
   for (let i = 1; i <= members.length; i++) {
     busy.push(<HiUser />)
   }
-  for (let i = 0; i <= maxMembers - members.length + 1; i++) {
+  for (let i = 1; i <= maxMembers - members.length; i++) {
     vacant.push(<HiOutlineUser />)
   }
   moment.locale('ru');
