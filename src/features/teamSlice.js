@@ -72,6 +72,9 @@ export const logoutTeam = createAsyncThunk(
         body: JSON.stringify(),
       });
       const data = await response.json();
+      if (data === "Команда удалена!") {
+        return thunkAPI.dispatch(fetchTeams());
+      }
       if (data.message) {
         toast.warning(data.message);
         return thunkAPI.rejectWithValue(data.message);
