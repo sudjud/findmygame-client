@@ -3,30 +3,44 @@ import { useEffect } from "react";
 import { fetchPlaygrounds } from "../../features/playgroundSlice";
 import card from "./card.module.sass";
 import MCard from "./MCard";
-import Header from "../Header";
 import * as React from "react";
 import Checkbox from "@mui/material/Checkbox";
-import { YMaps, Map, ListBox, SearchControl } from "@pbe/react-yandex-maps";
+import { YMaps, Map, SearchControl, Placemark } from "@pbe/react-yandex-maps";
 import { BsSearch } from "react-icons/bs";
+import { IoFootballOutline } from "react-icons/io5";
 
 export default function MCardSlider() {
   const dispatch = useDispatch("");
   const plays = useSelector((state) => state.playground.playgrounds);
-  console.log(plays);
+
+  const point = plays.map((item) => {
+    return item.coordinates;
+  });
+
   useEffect(() => {
     dispatch(fetchPlaygrounds());
   }, [dispatch]);
 
-  const [checked, setChecked] = React.useState('');
-  const [value, setValue] = React.useState('');
+  const [checked, setChecked] = React.useState("");
+  const [value, setValue] = React.useState("");
 
-  const filteredPlaygrounds = plays.filter(item => {
-    return item.name.toLowerCase().includes(value.toLowerCase())   
-  })
+  const filteredPlaygrounds = plays.filter((item) => {
+    return item.name.toLowerCase().includes(value.toLowerCase());
+  });
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
+  const [checkBoxes, setCheckboxes] = React.useState({
+    one : false,
+    two: false,
+    three: false,
+    four: false
+
+  })  
+  const handlerPrice = (e) => {
+    setCheckboxes({
+      ...checkBoxes,
+      [e.name]: e.target.checked
+    })
+  }
 
   return (
     <>
@@ -41,45 +55,49 @@ export default function MCardSlider() {
                   onChange={(e) => setValue(e.target.value)}
                   autoFocus
                   autoComplete="off"
-                  placeholder="Введите текст..."
+                  placeholder="Название площадки..."
                 />
-                <BsSearch className={card.search_icon}/>
+                <BsSearch className={card.search_icon} />
               </div>
               <button className={card.button_search}>Найти</button>
             </div>
             <div className={card.cards_sorting}>
               <div className={card.sorting}>
                 <div className={card.time}>
-                  <p>Цена за часа</p>
+                  <p>Цена за час</p>
                   <div className={card.time_checkbox}>
                     <div className={card.time_price}>
                       <Checkbox
-                        checked={checked}
-                        onChange={handleChange}
+                        checked={checkBoxes.one}
+                        name='one'
+                        onChange={handlerPrice}
                         inputProps={{ "aria-label": "controlled" }}
                       />{" "}
                       до 1000 ₽
                     </div>
                     <div className={card.time_price}>
                       <Checkbox
-                        checked={checked}
-                        onChange={handleChange}
+                        checked={checkBoxes.two}
+                        name='two'
+                        onChange={handlerPrice}
                         inputProps={{ "aria-label": "controlled" }}
                       />{" "}
                       1000 - 2000 ₽
                     </div>
                     <div className={card.time_price}>
                       <Checkbox
-                        checked={checked}
-                        onChange={handleChange}
+                        checked={checkBoxes.three}
+                        name='three'
+                        onChange={handlerPrice}
                         inputProps={{ "aria-label": "controlled" }}
                       />{" "}
                       2000 - 3000 ₽
                     </div>
                     <div className={card.time_price}>
                       <Checkbox
-                        checked={checked}
-                        onChange={handleChange}
+                        name='four'
+                        checked={checkBoxes.four}
+                        onChange={handlerPrice}
                         inputProps={{ "aria-label": "controlled" }}
                       />{" "}
                       3000 - 4000 ₽
@@ -92,7 +110,7 @@ export default function MCardSlider() {
                     <div className={card.time_price}>
                       <Checkbox
                         checked={checked}
-                        onChange={handleChange}
+                        onChange={handlerPrice}
                         inputProps={{ "aria-label": "controlled" }}
                       />{" "}
                       Газон
@@ -100,7 +118,7 @@ export default function MCardSlider() {
                     <div className={card.time_price}>
                       <Checkbox
                         checked={checked}
-                        onChange={handleChange}
+                        onChange={handlerPrice}
                         inputProps={{ "aria-label": "controlled" }}
                       />{" "}
                       Паркет
@@ -129,20 +147,29 @@ export default function MCardSlider() {
           <YMaps>
             <Map
               defaultState={{
-                center: [43.16689676691209, 44.80166469187365],
-                zoom: 10,
-              }}
+                center: [43.32309, 45.695081],
+                zoom: 12,}}
               width={"100%"}
               height={"100vh"}
             >
+              {point.map((item) => {
+                const [point_, point_2] = item.split(" ");
+                const point_1 = point_.slice(0, point_.length - 1);
+                return (
+                  <Placemark
+                    modules={[
+                      "geoObject.addon.balloon",
+                      "geoObject.addon.hint",
+                    ]}
+                    options={{ iconColor: "red" }}
+                    geometry={[+point_1, +point_2]}
+                    preset="islands#redSportIcon"
+                  />
+                );
+              })}
               <SearchControl
                 options={{
                   float: "right",
-                }}
-              />
-              <ListBox
-                data={{
-                  content: "Список отметок",
                 }}
               />
             </Map>

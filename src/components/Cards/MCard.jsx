@@ -10,7 +10,7 @@ export default function MCard(props) {
   const plays = useSelector((state) => state.playground.playgrounds.find((item) => item._id === id));
   
   return (
-    <div className={card.page}>
+    <div className={card.page} onClick={() => navigate(`/playground/${id}`)}>
       <div className={card.images}>
         <img src={`http://localhost:3030/${plays.photos[0].name}`} alt="" />
       </div>
