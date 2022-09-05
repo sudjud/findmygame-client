@@ -5,9 +5,11 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux'
 import 'moment/locale/ru'
 import { joinToTeam } from '../../features/teamSlice';
+import { useNavigate } from 'react-router-dom';
 
 function Team(params) {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { id, admin, sport, maxMembers, members, time } = params;
   let busy = []
   let vacant = [];
@@ -24,9 +26,12 @@ function Team(params) {
     dispatch(joinToTeam(id));
   }
   
+  const navToTeamPage = (id) => {
+    navigate(`/team/${id}`)
+  }
 
   return (
-    <div className={team.team}>
+    <div onClick={() => navToTeamPage(id)} className={team.team}>
       <div className={team.team__title}>
         {`Команда ${admin.name}`}
       </div>

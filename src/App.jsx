@@ -12,6 +12,8 @@ import CreateTeam from "./components/Teams/CreateTeam";
 import { ToastContainer } from "react-toastify";
 import TeamsPage from "./pages/TeamsPage";
 import Questions from "./components/Questions/Questions";
+import TeamPage from "./pages/TeamPage";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -27,10 +29,13 @@ function App() {
           <Route path='/profile' element={<PersonalArea />} />
           <Route path='/teams' element={<TeamsPage />} />
           <Route path="/questions" element={<Questions />} />
-          <Route path="/about" element={<AboutUs />}></Route>
+          <Route path="/about" element={<AboutUs />} />
+          <Route path='/team/:id' element={<TeamPage />} />
         </Routes>
+        
       </div>
       <ToastContainer />
+      <Footer />
     </>
   );
 }
