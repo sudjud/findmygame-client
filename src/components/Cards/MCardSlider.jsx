@@ -8,6 +8,7 @@ import Checkbox from "@mui/material/Checkbox";
 import { YMaps, Map, SearchControl, Placemark } from "@pbe/react-yandex-maps";
 import { BsSearch } from "react-icons/bs";
 import { IoFootballOutline } from "react-icons/io5";
+import MapBaloonn from "./MapBaloonn";
 
 export default function MCardSlider() {
   const dispatch = useDispatch("");
@@ -53,6 +54,8 @@ export default function MCardSlider() {
     return item.coordinates;
   });
 
+  console.log(filteredPlaygrounds);
+
   useEffect(() => {
     dispatch(fetchPlaygrounds());
   }, [dispatch]);
@@ -62,7 +65,7 @@ export default function MCardSlider() {
       ...checkBoxes,
       [e.target.name]: e.target.checked,
     });
-    console.log(e.target.name, e.target.checked);
+    // console.log(e.target.name, e.target.checked);
   };
 
   return (
@@ -196,18 +199,15 @@ export default function MCardSlider() {
               width={"100%"}
               height={"90vh"}
             >
-              {point.map((item) => {
-                const [point_, point_2] = item.split(" ");
-                const point_1 = point_.slice(0, point_.length - 1);
+              {filteredPlaygrounds.map((item) => {
                 return (
-                  <Placemark
-                    modules={[
-                      "geoObject.addon.balloon",
-                      "geoObject.addon.hint",
-                    ]}
-                    options={{ iconColor: "red" }}
-                    geometry={[+point_1, +point_2]}
-                    preset="islands#redSportIcon"
+                  <MapBaloonn
+                    key={item._id}
+                    id={item._id}
+                    point={item.coordinates}
+                    name={item.name}
+                    address={item.address}
+                    photos={item.photos}
                   />
                 );
               })}
