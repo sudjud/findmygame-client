@@ -1,26 +1,21 @@
 .main 
   display: flex
-  height: calc(100vh - 70px)
   background-color: #F9F9F9
 .elements
   width: 55%
-  height: 100vh
   background-color: #F9F9F9
 .map
   width: 45%
+  max-height: calc( 100vh - 120px )
 .searching
-  height: 100%
-  width: 100%
 .search
   width: 100%
   height: 60px
 .cards_sorting
-  display: flex
-  justify-content: space-between
 .sorting
   width: 27%
-  height: 100vh
   margin-left: 23px
+  float: left
   box-shadow: 0px 2px 29px 2px rgba(0, 0, 0, 0.1)
   border-radius: 10px
   margin-top: 15px
@@ -28,28 +23,36 @@
     transform: scale(1.03)
     transition: 350ms
 .cards
+  display: flex
+  flex-direction: column
+  gap: 20px 0
+  padding: 20px 20px 0 0
   overflow-y: scroll
-  height: 100vh
+  height: 100%
+  &__wrapper
+    height: 85vh
+
+  
 .cards::-webkit-scrollbar 
   display: none
 .page
   display: flex
-  margin-left: 40px
-  width: 90%
-  height: 180px
+  width: 682px
   border-radius: 10px
-  overflow: hidden
-  margin-top: 15px
+  min-height: 180px
   box-shadow: 0px 2px 29px 2px rgba(0, 0, 0, 0.2)
   cursor: pointer
   transition: 300ms
+  overflow: hidden
+  &:last-child
+    margin-bottom: 20px
   &:hover 
-    transform: scale(1.03)
+    transform: scale(1.01)
 .images
   width: 45%
 img
   width: 100%
-  height: 100%
+  
 .name
   font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif
   font-size: 20px
@@ -92,3 +95,10 @@ p
     margin-left: -40px
 .f
   background-color: red
+
+.checkbox__wrapper
+  display: flex
+  flex-direction: row-reverse
+  align-items: center
+  justify-content: start
+  gap: 0 10px

@@ -96,8 +96,8 @@ const Playground = () => {
             </div>
           </div>
           <BookingForm id={id} />
-          <Reviews/>
         </div>
+          <Reviews/>
       </>
     );
   }

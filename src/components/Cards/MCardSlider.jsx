@@ -11,9 +11,45 @@ import { IoFootballOutline } from "react-icons/io5";
 
 export default function MCardSlider() {
   const dispatch = useDispatch("");
-  const plays = useSelector((state) => state.playground.playgrounds);
+  const [value, setValue] = React.useState("");
+  const [checkBoxes, setCheckboxes] = React.useState({
+    first: false,
+    second: false,
+    third: false,
+    fourth: false,
+    synGrass: false,
+    natGrass: false,
+    parquet: false,
+  });
+  const filteredPlaygrounds = useSelector((state) =>
+    state.playground.playgrounds
+      .filter((item) => item.name.toLowerCase().includes(value.toLowerCase()))
+      .filter((item) => (checkBoxes.first ? item.price <= 1000 : true))
+      .filter((item) =>
+        checkBoxes.second ? item.price <= 2000 && item.price >= 1000 : true
+      )
+      .filter((item) =>
+        checkBoxes.third ? item.price <= 3000 && item.price >= 2000 : true
+      )
+      .filter((item) => (checkBoxes.fourth ? item.price >= 3000 : true))
+      .filter((item) =>
+        checkBoxes.synGrass
+          ? (item.surface === "Grass (s)") === checkBoxes.synGrass
+          : true
+      )
+      .filter((item) =>
+        checkBoxes.natGrass
+          ? (item.surface === "Grass (n)") === checkBoxes.natGrass
+          : true
+      )
+      .filter((item) =>
+        checkBoxes.parquet
+          ? (item.surface === "Parquet") === checkBoxes.parquet
+          : true
+      )
+  );
 
-  const point = plays.map((item) => {
+  const point = filteredPlaygrounds.map((item) => {
     return item.coordinates;
   });
 
@@ -21,26 +57,13 @@ export default function MCardSlider() {
     dispatch(fetchPlaygrounds());
   }, [dispatch]);
 
-  const [checked, setChecked] = React.useState("");
-  const [value, setValue] = React.useState("");
-
-  const filteredPlaygrounds = plays.filter((item) => {
-    return item.name.toLowerCase().includes(value.toLowerCase());
-  });
-
-  const [checkBoxes, setCheckboxes] = React.useState({
-    one : false,
-    two: false,
-    three: false,
-    four: false
-
-  })  
-  const handlerPrice = (e) => {
+  const handlerCheckbox = (e) => {
     setCheckboxes({
       ...checkBoxes,
-      [e.name]: e.target.checked
-    })
-  }
+      [e.target.name]: e.target.checked,
+    });
+    console.log(e.target.name, e.target.checked);
+  };
 
   return (
     <>
@@ -66,79 +89,99 @@ export default function MCardSlider() {
                 <div className={card.time}>
                   <p>Цена за час</p>
                   <div className={card.time_checkbox}>
-                    <div className={card.time_price}>
-                      <Checkbox
-                        checked={checkBoxes.one}
-                        name='one'
-                        onChange={handlerPrice}
-                        inputProps={{ "aria-label": "controlled" }}
-                      />{" "}
-                      до 1000 ₽
+                    <div className={card.checkbox__wrapper}>
+                      <label htmlFor="first">До 1000₽</label>
+                      <input
+                        onChange={handlerCheckbox}
+                        value={checkBoxes.first}
+                        type="checkbox"
+                        name="first"
+                        id="first"
+                      />
                     </div>
-                    <div className={card.time_price}>
-                      <Checkbox
-                        checked={checkBoxes.two}
-                        name='two'
-                        onChange={handlerPrice}
-                        inputProps={{ "aria-label": "controlled" }}
-                      />{" "}
-                      1000 - 2000 ₽
+                    <div className={card.checkbox__wrapper}>
+                      <label htmlFor="second">1000-2000₽</label>
+                      <input
+                        onChange={handlerCheckbox}
+                        value={checkBoxes.second}
+                        type="checkbox"
+                        name="second"
+                        id="second"
+                      />
                     </div>
-                    <div className={card.time_price}>
-                      <Checkbox
-                        checked={checkBoxes.three}
-                        name='three'
-                        onChange={handlerPrice}
-                        inputProps={{ "aria-label": "controlled" }}
-                      />{" "}
-                      2000 - 3000 ₽
+                    <div className={card.checkbox__wrapper}>
+                      <label htmlFor="third">2000-3000₽</label>
+                      <input
+                        onChange={handlerCheckbox}
+                        value={checkBoxes.third}
+                        type="checkbox"
+                        name="third"
+                        id="third"
+                      />
                     </div>
-                    <div className={card.time_price}>
-                      <Checkbox
-                        name='four'
-                        checked={checkBoxes.four}
-                        onChange={handlerPrice}
-                        inputProps={{ "aria-label": "controlled" }}
-                      />{" "}
-                      3000 - 4000 ₽
+                    <div className={card.checkbox__wrapper}>
+                      <label htmlFor="fourth">от 3000₽</label>
+                      <input
+                        onChange={handlerCheckbox}
+                        value={checkBoxes.fourth}
+                        type="checkbox"
+                        name="fourth"
+                        id="fourth"
+                      />
                     </div>
                   </div>
                 </div>
                 <div className={card.surfase}>
                   <p>Покрытие </p>
                   <div className={card.time_checkbox}>
-                    <div className={card.time_price}>
-                      <Checkbox
-                        checked={checked}
-                        onChange={handlerPrice}
-                        inputProps={{ "aria-label": "controlled" }}
-                      />{" "}
-                      Газон
+                    <div className={card.checkbox__wrapper}>
+                      <label htmlFor="synGrass">Синтетический газон</label>
+                      <input
+                        onChange={handlerCheckbox}
+                        value={checkBoxes.synGrass}
+                        type="checkbox"
+                        name="synGrass"
+                        id="synGrass"
+                      />
                     </div>
-                    <div className={card.time_price}>
-                      <Checkbox
-                        checked={checked}
-                        onChange={handlerPrice}
-                        inputProps={{ "aria-label": "controlled" }}
-                      />{" "}
-                      Паркет
+                    <div className={card.checkbox__wrapper}>
+                      <label htmlFor="natGrass">Натуральный газон</label>
+                      <input
+                        onChange={handlerCheckbox}
+                        value={checkBoxes.natGrass}
+                        type="checkbox"
+                        name="natGrass"
+                        id="natGrass"
+                      />
+                    </div>
+                    <div className={card.checkbox__wrapper}>
+                      <label htmlFor="parquet">Паркет</label>
+                      <input
+                        onChange={handlerCheckbox}
+                        value={checkBoxes.parquet}
+                        type="checkbox"
+                        name="parquet"
+                        id="parquet"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
-              <div className={card.cards}>
-                {filteredPlaygrounds.map((item) => {
-                  return (
-                    <MCard
-                      id={item._id}
-                      key={item._id}
-                      name={item.name}
-                      price={item.price}
-                      photo={item.photos}
-                      address={item.address}
-                    />
-                  );
-                })}
+              <div className={card.cards__wrapper}>
+                <div className={card.cards}>
+                  {filteredPlaygrounds.map((item) => {
+                    return (
+                      <MCard
+                        id={item._id}
+                        key={item._id}
+                        name={item.name}
+                        price={item.price}
+                        photo={item.photos}
+                        address={item.address}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
@@ -148,9 +191,10 @@ export default function MCardSlider() {
             <Map
               defaultState={{
                 center: [43.32309, 45.695081],
-                zoom: 12,}}
+                zoom: 12,
+              }}
               width={"100%"}
-              height={"100vh"}
+              height={"90vh"}
             >
               {point.map((item) => {
                 const [point_, point_2] = item.split(" ");
